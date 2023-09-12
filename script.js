@@ -33,14 +33,14 @@ for (h = 0; h < totalHours + 1; h++) {
     //form
     //localstorage
     //populate if localstorage
-    let taskDivEl = $('<div>')
+    let taskDivEl = $('<textarea>')
     .addClass('col col-sm-12 col-md-10 task');
 
     //column for button
     //button
     //style
-    let btnDivEl = $('<div>')
-    .addClass('col col-sm-12 col-md-1 save');
+    let btnDivEl = $('<button>')
+    .addClass('col col-sm-12 col-md-1 saveBtn');
     
     //console.log(blockTime); //todo RM
     //console.log(blockTime.format("h A")); //todo RM
