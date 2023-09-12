@@ -19,20 +19,28 @@ for (h = 0; h < totalHours + 1; h++) {
 
     //bootstrap row
     let newRowEl = $('<div>')
-        .addClass('row');
+        .addClass('row time-block');
 
     //column for time
+    //style
     let timeDivEl = $('<div>')
-        .addClass('col time')
+        .addClass('col col-sm-12 col-md-1 hour')
         .text(blockTime.format("h A"));
         
     //column for task
+    //style
+    //past/pre/future - dayjs - class
+    //form
+    //localstorage
+    //populate if localstorage
     let taskDivEl = $('<div>')
-    .addClass('col task');
+    .addClass('col col-sm-12 col-md-10 task');
 
     //column for button
+    //button
+    //style
     let btnDivEl = $('<div>')
-    .addClass('col save');
+    .addClass('col col-sm-12 col-md-1 save');
     
     //console.log(blockTime); //todo RM
     //console.log(blockTime.format("h A")); //todo RM
