@@ -1,28 +1,37 @@
 //VARIABLES
 var today = dayjs();
-let dayHeading = $('#currentDay');
-let dayStartTime = dayjs().hour(9).minute(00);
-let dayEndTime = dayjs().hour(17).minute(00);
+let dayHeadingEl = $('#currentDay'); //current day in header
+let dayStartTime = dayjs().hour(9).minute(00); //day start time
+let dayEndTime = dayjs().hour(17).minute(00); //day end time
 let dayStartHour = dayStartTime.format("H");
 let dayEndHour = dayEndTime.format("H");
 let totalHours = parseInt(dayEndHour - dayStartHour);
 
+let timeBlocksEl = $('#time-blocks'); //container for time blocks
 
 //INITIALISE PAGE
-dayHeading.text(dayjs().format("dddd, DD MMMM YYYY"));
+dayHeadingEl.text(dayjs().format("dddd, DD MMMM YYYY")); //set date
 
 
-
-//TODO
 //time blocks for each hour (9am - 5pm)
 let blockTime = dayStartTime;
-for (h = 0; h < totalHours; h++) {
+for (h = 0; h < totalHours + 1; h++) {
+
+    //create div
+    let timeDivEl = $('<div>')
+        .addClass('col')
+        .text(blockTime.format("h A"))
+        //.$('</div>');
+    
+    //console.log(blockTime); //todo RM
+    //console.log(blockTime.format("h A")); //todo RM
+
+    timeBlocksEl.append(timeDivEl);
 
     blockTime = blockTime.add(1, 'h');
-    console.log(blockTime);
-    console.log(blockTime.format("h A"));
 }
  
+//TODO
 //colour code time blocks 
 //enter event in block when clicked
 //save event in locat storage
