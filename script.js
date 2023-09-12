@@ -1,44 +1,60 @@
 //VARIABLES
-var today = dayjs();
-let currentHour = parseInt(dayjs().format('H'));
+const today = dayjs();
+
 let dayHeadingEl = $('#currentDay'); //current day paragraph in header
-let dayStartTime = dayjs().hour(9).minute(00); //day start time
+let saveBtn = $('.saveBtn');
+
+let dayStartTime = dayjs().hour(0).minute(00); //temporary start time for testing
+//let dayStartTime = dayjs().hour(9).minute(00); //day start time
 //let dayEndTime = dayjs().hour(17).minute(00); //day end time
 let dayEndTime = dayjs().hour(23).minute(00); //temporary end time for testing
+
 let dayStartHour = dayStartTime.format('H');
 let dayEndHour = dayEndTime.format('H');
 let totalHours = parseInt(dayEndHour - dayStartHour);
+let currentHour = parseInt(dayjs().format('H'));
 
 let timeBlocksEl = $('#time-blocks'); //container for time blocks
 
+//FUNCTIONS
+function getTask() {
+    localStorage.getItem('task');
+}
+
+function saveTask() {
+    localStorage.setItem('task','test tast');
+}
+
+
 //INITIALISE PAGE
 dayHeadingEl.text(dayjs().format('dddd, DD MMMM YYYY')); //set date
+
+
+
+
 
 //time blocks for each hour (9am - 5pm)
 let blockTime = dayStartTime; //time of this time block
 for (h = 0; h < totalHours + 1; h++) {
 
     //bootstrap row
-    let newRowEl = $('<div>')
+    let rowEl = $('<div>')
         .addClass('row time-block');
 
     //column for time
-    //style
-    let timeDivEl = $('<div>')
+    let hourColEl = $('<div>')
         .addClass('col col-sm-12 col-md-1 hour')
         .text(blockTime.format('h A'));
         
     //column for task
-    //style
-    //past/pre/future - dayjs - class
-    //form
-    //localstorage
-    //populate if localstorage
+    //TODO style - text colours
+    //TODO save to localstorage
+    //TODO populate if localstorage
     let taskDivEl = $('<textarea>')
     .addClass('col col-sm-12 col-md-10 task');
     
-    
-    let blockHour = blockTime.format("H");
+    //add classes to blocks depending if past, present or future
+    let blockHour = blockTime.format("H"); //hour of this block
 
     if (blockHour < currentHour) {
         taskDivEl.addClass('past');
@@ -53,29 +69,28 @@ for (h = 0; h < totalHours + 1; h++) {
 
     //column for button
     //button
-    //style
-    let btnDivEl = $('<button>')
+    //style - icon
+    let btnEl = $('<button>')
     .addClass('col col-sm-12 col-md-1 saveBtn');
-    
-    //console.log(blockTime); //todo RM
-    //console.log(blockTime.format("h A")); //todo RM
 
-    timeBlocksEl.append(newRowEl);
-    newRowEl.append(timeDivEl);
-    newRowEl.append(taskDivEl);
-    newRowEl.append(btnDivEl);
+    timeBlocksEl.append(rowEl);
+    rowEl.append(hourColEl);
+    rowEl.append(taskDivEl);
+    rowEl.append(btnEl);
 
-    blockTime = blockTime.add(1, 'h'); //add 1 hour
-
+    blockTime = blockTime.add(1, 'h'); //increment hours
 }
  
 //TODO
-//colour code time blocks 
-//enter event in block when clicked
 //save event in local storage
+saveBtn.on('click', saveTask());
 
-//DONE
-//current day at top of calendar
+
+//EVENT LISTENERS
+//keyup?
+//savebtn?
+
+
 
 //TESTS
 console.log(`Start Time: ${dayStartTime}`);
