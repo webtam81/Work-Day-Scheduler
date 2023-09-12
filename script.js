@@ -3,6 +3,7 @@ const today = dayjs();
 
 let dayHeadingEl = $('#currentDay'); //current day paragraph in header
 let saveBtn = $('.saveBtn');
+let saveBtn9 = $('#saveBtn9');
 
 let dayStartTime = dayjs().hour(0).minute(00); //temporary start time for testing
 //let dayStartTime = dayjs().hour(9).minute(00); //day start time
@@ -22,7 +23,8 @@ function getTask() {
 }
 
 function saveTask() {
-    localStorage.setItem('task','test tast');
+    localStorage.setItem('thisTask','test task');
+    
 }
 
 
@@ -30,12 +32,11 @@ function saveTask() {
 dayHeadingEl.text(dayjs().format('dddd, DD MMMM YYYY')); //set date
 
 
-
-
-
-//time blocks for each hour (9am - 5pm)
+//generate time blocks for each hour (9am - 5pm)
 let blockTime = dayStartTime; //time of this time block
 for (h = 0; h < totalHours + 1; h++) {
+
+    let blockHour = blockTime.format("H"); //hour of this block
 
     //bootstrap row
     let rowEl = $('<div>')
@@ -50,12 +51,11 @@ for (h = 0; h < totalHours + 1; h++) {
     //TODO style - text colours
     //TODO save to localstorage
     //TODO populate if localstorage
+    
     let taskDivEl = $('<textarea>')
     .addClass('col col-sm-12 col-md-10 task');
-    
-    //add classes to blocks depending if past, present or future
-    let blockHour = blockTime.format("H"); //hour of this block
 
+    //add classes to blocks depending if past, present or future
     if (blockHour < currentHour) {
         taskDivEl.addClass('past');
     } else if (blockHour == currentHour) {
@@ -64,14 +64,12 @@ for (h = 0; h < totalHours + 1; h++) {
         taskDivEl.addClass('future');
     }
 
-    //console.log(blockTime.format("H")); todo RM
-    //console.log(dayjs().format('H')); todo RM
-
     //column for button
     //button
     //style - icon
     let btnEl = $('<button>')
-    .addClass('col col-sm-12 col-md-1 saveBtn');
+    .addClass('col col-sm-12 col-md-1 saveBtn')
+    .addClass('saveBtn' + blockHour);
 
     timeBlocksEl.append(rowEl);
     rowEl.append(hourColEl);
