@@ -1,17 +1,18 @@
 //VARIABLES
 var today = dayjs();
-let dayHeadingEl = $('#currentDay'); //current day in header
+let currentHour = parseInt(dayjs().format('H'));
+let dayHeadingEl = $('#currentDay'); //current day paragraph in header
 let dayStartTime = dayjs().hour(9).minute(00); //day start time
-let dayEndTime = dayjs().hour(17).minute(00); //day end time
-let dayStartHour = dayStartTime.format("H");
-let dayEndHour = dayEndTime.format("H");
+//let dayEndTime = dayjs().hour(17).minute(00); //day end time
+let dayEndTime = dayjs().hour(23).minute(00); //temporary end time for testing
+let dayStartHour = dayStartTime.format('H');
+let dayEndHour = dayEndTime.format('H');
 let totalHours = parseInt(dayEndHour - dayStartHour);
 
 let timeBlocksEl = $('#time-blocks'); //container for time blocks
 
 //INITIALISE PAGE
-dayHeadingEl.text(dayjs().format("dddd, DD MMMM YYYY")); //set date
-
+dayHeadingEl.text(dayjs().format('dddd, DD MMMM YYYY')); //set date
 
 //time blocks for each hour (9am - 5pm)
 let blockTime = dayStartTime; //time of this time block
@@ -25,7 +26,7 @@ for (h = 0; h < totalHours + 1; h++) {
     //style
     let timeDivEl = $('<div>')
         .addClass('col col-sm-12 col-md-1 hour')
-        .text(blockTime.format("h A"));
+        .text(blockTime.format('h A'));
         
     //column for task
     //style
@@ -35,6 +36,20 @@ for (h = 0; h < totalHours + 1; h++) {
     //populate if localstorage
     let taskDivEl = $('<textarea>')
     .addClass('col col-sm-12 col-md-10 task');
+    
+    
+    let blockHour = blockTime.format("H");
+
+    if (blockHour < currentHour) {
+        taskDivEl.addClass('past');
+    } else if (blockHour == currentHour) {
+        taskDivEl.addClass('present');
+    } else if (blockHour > currentHour) {
+        taskDivEl.addClass('future');
+    }
+
+    //console.log(blockTime.format("H")); todo RM
+    //console.log(dayjs().format('H')); todo RM
 
     //column for button
     //button
