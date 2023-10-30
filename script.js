@@ -4,10 +4,11 @@ const today = dayjs();
 let dayHeadingEl = $('#currentDay'); //current day paragraph in header
 let saveBtn = $('.saveBtn');
 
-let dayStartTime = dayjs().hour(0).minute(00); //temporary start time for testing
-//let dayStartTime = dayjs().hour(9).minute(00); //day start time
-//let dayEndTime = dayjs().hour(17).minute(00); //day end time
-let dayEndTime = dayjs().hour(23).minute(00); //temporary end time for testing
+//let dayStartTime = dayjs().hour(0).minute(00); //temporary start time for testing
+//let dayEndTime = dayjs().hour(23).minute(00); //temporary end time for testing
+let dayStartTime = dayjs().hour(9).minute(00); //day start time
+let dayEndTime = dayjs().hour(17).minute(00); //day end time
+
 
 let dayStartHour = dayStartTime.format('H');
 let dayEndHour = dayEndTime.format('H');
@@ -61,6 +62,8 @@ function generateBlocks() {
         rowEl.append(taskDivEl);
         rowEl.append(btnEl);
 
+        btnEl.html('<i class="fas fa-save"></i>');
+
         blockTime = blockTime.add(1, 'h'); //increment hours
     }
 }
@@ -70,7 +73,7 @@ function getTasks() {
     if (storedTasks !== null) {
         tasks = JSON.parse(storedTasks);
         
-        $('*[data-num="0"] textarea').val(tasks.taskHr0);
+        /*$('*[data-num="0"] textarea').val(tasks.taskHr0);
         $('*[data-num="1"] textarea').val(tasks.taskHr1);
         $('*[data-num="2"] textarea').val(tasks.taskHr2);
         $('*[data-num="3"] textarea').val(tasks.taskHr3);
@@ -78,7 +81,7 @@ function getTasks() {
         $('*[data-num="5"] textarea').val(tasks.taskHr5);
         $('*[data-num="6"] textarea').val(tasks.taskHr6);
         $('*[data-num="7"] textarea').val(tasks.taskHr7);
-        $('*[data-num="8"] textarea').val(tasks.taskHr8);
+        $('*[data-num="8"] textarea').val(tasks.taskHr8);*/
         $('*[data-num="9"] textarea').val(tasks.taskHr9);
         $('*[data-num="10"] textarea').val(tasks.taskHr10);
         $('*[data-num="11"] textarea').val(tasks.taskHr11);
@@ -90,10 +93,10 @@ function getTasks() {
         $('*[data-num="17"] textarea').val(tasks.taskHr17);
         $('*[data-num="18"] textarea').val(tasks.taskHr18);
         $('*[data-num="19"] textarea').val(tasks.taskHr19);
-        $('*[data-num="20"] textarea').val(tasks.taskHr20);
+        /*$('*[data-num="20"] textarea').val(tasks.taskHr20);
         $('*[data-num="21"] textarea').val(tasks.taskHr21);
         $('*[data-num="22"] textarea').val(tasks.taskHr22);
-        $('*[data-num="23"] textarea').val(tasks.taskHr23);
+        $('*[data-num="23"] textarea').val(tasks.taskHr23);*/
     }
     //console.log(tasks);
 }
