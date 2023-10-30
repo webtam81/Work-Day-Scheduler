@@ -16,17 +16,9 @@ let currentHour = parseInt(dayjs().format('H'));
 
 let timeBlocksEl = $('#time-blocks'); //container for time blocks
 
-//et tasks;
-
-let tasks = {
-    taskHr6: 'Wake Up',
-    taskHr12: 'Lunch'
-}
-
-
+let tasks;
 
 //FUNCTIONS
-
 function generateBlocks() {
     //generate time blocks for each hour (9am - 5pm)
     let blockTime = dayStartTime; //time of this time block
@@ -45,13 +37,8 @@ function generateBlocks() {
             .text(blockTime.format('h A'));
             
         //column for task
-        //TODO style - text colours
-        //TODO save to localstorage
-        //TODO populate if localstorage
-        
         let taskDivEl = $('<textarea>')
         .addClass('col col-sm-12 col-md-10 task');
-        //.addClass('taskHr' + [h]);
 
         //add classes to blocks depending if past, present or future
         if (blockHour < currentHour) {
@@ -82,50 +69,57 @@ function getTasks() {
     let storedTasks = localStorage.getItem('tasks');
     if (storedTasks !== null) {
         tasks = JSON.parse(storedTasks);
+        
+        $('*[data-num="0"] textarea').val(tasks.taskHr0);
+        $('*[data-num="1"] textarea').val(tasks.taskHr1);
+        $('*[data-num="2"] textarea').val(tasks.taskHr2);
+        $('*[data-num="3"] textarea').val(tasks.taskHr3);
+        $('*[data-num="4"] textarea').val(tasks.taskHr4);
+        $('*[data-num="5"] textarea').val(tasks.taskHr5);
+        $('*[data-num="6"] textarea').val(tasks.taskHr6);
+        $('*[data-num="7"] textarea').val(tasks.taskHr7);
+        $('*[data-num="8"] textarea').val(tasks.taskHr8);
+        $('*[data-num="9"] textarea').val(tasks.taskHr9);
+        $('*[data-num="10"] textarea').val(tasks.taskHr10);
+        $('*[data-num="11"] textarea').val(tasks.taskHr11);
+        $('*[data-num="12"] textarea').val(tasks.taskHr12);
+        $('*[data-num="13"] textarea').val(tasks.taskHr13);
+        $('*[data-num="14"] textarea').val(tasks.taskHr14);
+        $('*[data-num="15"] textarea').val(tasks.taskHr15);
+        $('*[data-num="16"] textarea').val(tasks.taskHr16);
+        $('*[data-num="17"] textarea').val(tasks.taskHr17);
+        $('*[data-num="18"] textarea').val(tasks.taskHr18);
+        $('*[data-num="19"] textarea').val(tasks.taskHr19);
+        $('*[data-num="20"] textarea').val(tasks.taskHr20);
+        $('*[data-num="21"] textarea').val(tasks.taskHr21);
+        $('*[data-num="22"] textarea').val(tasks.taskHr22);
+        $('*[data-num="23"] textarea').val(tasks.taskHr23);
     }
-    console.log(tasks);
+    //console.log(tasks);
 }
 
 function saveTask() {
-    //event.preventDefault();
     let changedTask = $(event.target);
     let dataNum = changedTask.parent('div').attr('data-num');
     let taskHr = 'taskHr' + dataNum;
-    //let newTask = 'Eat Lunch';
     let newTask = $('*[data-num="'+dataNum+'"] textarea').val();
-    console.log(newTask);
+    //console.log(newTask);
     tasks[taskHr] = newTask;
     localStorage.setItem('tasks',JSON.stringify(tasks));
-    console.log('task stored');
+    //console.log('task stored');
 }
 
-document.querySelector("#time-blocks > div:nth-child(7) > textarea")
-
 //INITIALISE PAGE
-
 dayHeadingEl.text(dayjs().format('dddd, DD MMMM YYYY')); //set date
 generateBlocks();
 getTasks();
 
- 
-//TODO
-//save event in local storage
-//$('.saveBtn').on('click', function saveTasky() {
-//    alert('ahoy');
-//});
-
+//EVENT LISTENERS
 $('.saveBtn').on('click', saveTask);
 
-
-//EVENT LISTENERS
-//keyup?
-//savebtn?
-
-
-
 //TESTS
-console.log(`Start Time: ${dayStartTime}`);
-console.log(`End Time: ${dayEndTime}`);
-console.log(`Start Hour: ${dayStartHour}`);
-console.log(`End Hour: ${dayEndHour}`);
-console.log(`Total Hours: ${totalHours}`);
+//console.log(`Start Time: ${dayStartTime}`);
+//console.log(`End Time: ${dayEndTime}`);
+//console.log(`Start Hour: ${dayStartHour}`);
+//console.log(`End Hour: ${dayEndHour}`);
+//console.log(`Total Hours: ${totalHours}`);
