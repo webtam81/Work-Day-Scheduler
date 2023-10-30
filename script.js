@@ -9,7 +9,6 @@ let saveBtn = $('.saveBtn');
 let dayStartTime = dayjs().hour(9).minute(00); //day start time
 let dayEndTime = dayjs().hour(17).minute(00); //day end time
 
-
 let dayStartHour = dayStartTime.format('H');
 let dayEndHour = dayEndTime.format('H');
 let totalHours = parseInt(dayEndHour - dayStartHour);
@@ -30,7 +29,8 @@ function generateBlocks() {
         //bootstrap row
         let rowEl = $('<div>')
             .addClass('row time-block')
-            .attr('data-num',[h]);
+            //.attr('data-num',[h]);
+            .attr('data-num',[h+9]);
 
         //column for time
         let hourColEl = $('<div>')
@@ -91,9 +91,9 @@ function getTasks() {
         $('*[data-num="15"] textarea').val(tasks.taskHr15);
         $('*[data-num="16"] textarea').val(tasks.taskHr16);
         $('*[data-num="17"] textarea').val(tasks.taskHr17);
-        $('*[data-num="18"] textarea').val(tasks.taskHr18);
+        /*$('*[data-num="18"] textarea').val(tasks.taskHr18);
         $('*[data-num="19"] textarea').val(tasks.taskHr19);
-        /*$('*[data-num="20"] textarea').val(tasks.taskHr20);
+        $('*[data-num="20"] textarea').val(tasks.taskHr20);
         $('*[data-num="21"] textarea').val(tasks.taskHr21);
         $('*[data-num="22"] textarea').val(tasks.taskHr22);
         $('*[data-num="23"] textarea').val(tasks.taskHr23);*/
@@ -106,7 +106,7 @@ function saveTask() {
     let dataNum = changedTask.parent('div').attr('data-num');
     let taskHr = 'taskHr' + dataNum;
     let newTask = $('*[data-num="'+dataNum+'"] textarea').val();
-    //console.log(newTask);
+    console.log(newTask);
     tasks[taskHr] = newTask;
     localStorage.setItem('tasks',JSON.stringify(tasks));
     //console.log('task stored');
