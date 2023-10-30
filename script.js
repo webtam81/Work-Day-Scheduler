@@ -17,6 +17,8 @@ let currentHour = parseInt(dayjs().format('H'));
 
 let timeBlocksEl = $('#time-blocks'); //container for time blocks
 
+let tasks = ['task1', 'task2', 'task3'];
+
 //FUNCTIONS
 function getTask() {
     localStorage.getItem('task');
@@ -27,9 +29,26 @@ function saveTask() {
     
 }
 
+function getTasks() {
+    let storedTasks = localStorage.getItem('tasks');
+    if (storedTasks !== null) {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+    console.log(tasks);
+}
+
+function saveTasks() {
+    localStorage.setItem('tasks',JSON.stringify(storedTasks));
+    
+}
+
+
+
 
 //INITIALISE PAGE
 dayHeadingEl.text(dayjs().format('dddd, DD MMMM YYYY')); //set date
+
+getTasks();
 
 
 //generate time blocks for each hour (9am - 5pm)
@@ -69,7 +88,7 @@ for (h = 0; h < totalHours + 1; h++) {
     //style - icon
     let btnEl = $('<button>')
     .addClass('col col-sm-12 col-md-1 saveBtn')
-    .addClass('saveBtn' + blockHour);
+    //.addClass('saveBtn' + blockHour);
 
     timeBlocksEl.append(rowEl);
     rowEl.append(hourColEl);
