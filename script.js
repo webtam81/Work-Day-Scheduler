@@ -91,13 +91,15 @@ function saveTask() {
     let changedTask = $(event.target);
     let dataNum = changedTask.parent('div').attr('data-num');
     let taskHr = 'taskHr' + dataNum;
-    let newTask = 'Eat Lunch'
+    //let newTask = 'Eat Lunch';
+    let newTask = $('*[data-num="'+dataNum+'"] textarea').val();
     console.log(newTask);
     tasks[taskHr] = newTask;
     localStorage.setItem('tasks',JSON.stringify(tasks));
     console.log('task stored');
 }
 
+document.querySelector("#time-blocks > div:nth-child(7) > textarea")
 
 //INITIALISE PAGE
 
