@@ -17,28 +17,32 @@ let currentHour = parseInt(dayjs().format('H'));
 
 let timeBlocksEl = $('#time-blocks'); //container for time blocks
 
-let tasks = ['task1', 'task2', 'task3'];
+let tasks = {
+    taskHr1: 'Wake up',
+    taskHr5: 'Get Dressed',
+    taskHr16: 'Go Home'
+};
 
 //FUNCTIONS
-function getTask() {
+/*function getTask() {
     localStorage.getItem('task');
 }
 
 function saveTask() {
     localStorage.setItem('thisTask','test task');
     
-}
+}*/
 
 function getTasks() {
     let storedTasks = localStorage.getItem('tasks');
     if (storedTasks !== null) {
-        tasks = JSON.parse(localStorage.getItem('tasks'));
+        tasks = JSON.parse(storedTasks);
     }
     console.log(tasks);
 }
 
-function saveTasks() {
-    localStorage.setItem('tasks',JSON.stringify(storedTasks));
+function saveTask() {
+    localStorage.setItem('tasks',JSON.stringify(tasks));
     
 }
 
@@ -72,7 +76,8 @@ for (h = 0; h < totalHours + 1; h++) {
     //TODO populate if localstorage
     
     let taskDivEl = $('<textarea>')
-    .addClass('col col-sm-12 col-md-10 task');
+    .addClass('col col-sm-12 col-md-10 task')
+    .addClass('taskHr' + [h]);
 
     //add classes to blocks depending if past, present or future
     if (blockHour < currentHour) {
