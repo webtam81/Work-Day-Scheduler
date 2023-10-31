@@ -35,12 +35,12 @@ function generateBlocks() {
 
         //column for time
         let hourColEl = $('<div>')
-            .addClass('col col-sm-12 col-md-1 hour')
+            .addClass('col col-12 col-sm-1 hour')
             .text(blockTime.format('h A'));
             
         //column for task
         let taskDivEl = $('<textarea>')
-        .addClass('col col-sm-12 col-md-10 task')
+        .addClass('col col-12 col-sm-10 task')
         .attr('name',[h]);
 
         //add classes to blocks depending if past, present or future
@@ -54,7 +54,7 @@ function generateBlocks() {
 
         //column for button
         let btnEl = $('<button>')
-        .addClass('col col-sm-12 col-md-1 saveBtn')
+        .addClass('col col-12 col-sm-1 saveBtn')
         .addClass('saveBtn' + blockHour)
         .html('<i class="fas fa-save"></i>');
 

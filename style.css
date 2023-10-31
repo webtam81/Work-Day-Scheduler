@@ -78,3 +78,36 @@ header {
   font-size: 22px;
   color: #000;
 }
+
+@media (max-width: 575px) {
+  header {
+    padding: 30px;
+  }
+  .row {
+    height: inherit;
+    margin: 10px;
+    border: 1px dashed #000;
+    border-radius: 0px;
+  }
+
+  .saveBtn {
+    border-radius: 0px;
+    padding: 8px;
+    font-size: 22px;
+  }
+
+  .saveBtn:hover i {
+    font-size: inherit;
+  }
+
+  .hour {
+    border: none; 
+    font-weight: bold;
+    padding: 10px;
+  }
+
+  textarea,
+  .saveBtn {
+    border: 0;
+  }
+}
