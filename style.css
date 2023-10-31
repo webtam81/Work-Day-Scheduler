@@ -79,7 +79,12 @@ header {
   color: #000;
 }
 
-@media (max-width: 575px) {
+footer {
+  text-align: center;
+  padding: 30px;
+}
+
+@media screen and (max-width: 575px) {
   header {
     padding: 30px;
   }

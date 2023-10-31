@@ -122,3 +122,9 @@ getTasks();
 
 //EVENT LISTENERS
 $('.saveBtn').on('click', saveTask);
+
+$('#clear-schedule').on('click', function() {
+    localStorage.removeItem('tasks');
+    tasks = {};
+    $('.task').val('');
+});
