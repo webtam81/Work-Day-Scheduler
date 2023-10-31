@@ -4,10 +4,10 @@ const today = dayjs();
 let dayHeadingEl = $('#currentDay'); //current day paragraph in header
 let saveBtn = $('.saveBtn');
 
-//let dayStartTime = dayjs().hour(0).minute(00); //temporary start time for testing
-//let dayEndTime = dayjs().hour(23).minute(00); //temporary end time for testing
-let dayStartTime = dayjs().hour(9).minute(00); //day start time
-let dayEndTime = dayjs().hour(17).minute(00); //day end time
+let dayStartTime = dayjs().hour(0).minute(00); //temporary start time for testing
+let dayEndTime = dayjs().hour(23).minute(00); //temporary end time for testing
+//let dayStartTime = dayjs().hour(9).minute(00); //day start time
+//let dayEndTime = dayjs().hour(17).minute(00); //day end time
 
 let dayStartHour = dayStartTime.format('H');
 let dayEndHour = dayEndTime.format('H');
@@ -16,7 +16,7 @@ let currentHour = parseInt(dayjs().format('H'));
 
 let timeBlocksEl = $('#time-blocks'); //container for time blocks
 
-let tasks;
+let tasks = {};
 
 //FUNCTIONS
 function generateBlocks() {
@@ -29,8 +29,8 @@ function generateBlocks() {
         //bootstrap row
         let rowEl = $('<div>')
             .addClass('row time-block')
-            //.attr('data-num',[h]);
-            .attr('data-num',[h+9]);
+            .attr('data-num',[h]);
+            //.attr('data-num',[h+9]);
 
         //column for time
         let hourColEl = $('<div>')
@@ -73,7 +73,7 @@ function getTasks() {
     if (storedTasks !== null) {
         tasks = JSON.parse(storedTasks);
         
-        /*$('*[data-num="0"] textarea').val(tasks.taskHr0);
+        /**/$('*[data-num="0"] textarea').val(tasks.taskHr0);
         $('*[data-num="1"] textarea').val(tasks.taskHr1);
         $('*[data-num="2"] textarea').val(tasks.taskHr2);
         $('*[data-num="3"] textarea').val(tasks.taskHr3);
@@ -81,7 +81,7 @@ function getTasks() {
         $('*[data-num="5"] textarea').val(tasks.taskHr5);
         $('*[data-num="6"] textarea').val(tasks.taskHr6);
         $('*[data-num="7"] textarea').val(tasks.taskHr7);
-        $('*[data-num="8"] textarea').val(tasks.taskHr8);*/
+        $('*[data-num="8"] textarea').val(tasks.taskHr8);/**/
         $('*[data-num="9"] textarea').val(tasks.taskHr9);
         $('*[data-num="10"] textarea').val(tasks.taskHr10);
         $('*[data-num="11"] textarea').val(tasks.taskHr11);
@@ -91,22 +91,22 @@ function getTasks() {
         $('*[data-num="15"] textarea').val(tasks.taskHr15);
         $('*[data-num="16"] textarea').val(tasks.taskHr16);
         $('*[data-num="17"] textarea').val(tasks.taskHr17);
-        /*$('*[data-num="18"] textarea').val(tasks.taskHr18);
+        /**/$('*[data-num="18"] textarea').val(tasks.taskHr18);
         $('*[data-num="19"] textarea').val(tasks.taskHr19);
         $('*[data-num="20"] textarea').val(tasks.taskHr20);
         $('*[data-num="21"] textarea').val(tasks.taskHr21);
         $('*[data-num="22"] textarea').val(tasks.taskHr22);
-        $('*[data-num="23"] textarea').val(tasks.taskHr23);*/
+        $('*[data-num="23"] textarea').val(tasks.taskHr23);/**/
     }
     //console.log(tasks);
 }
 
 function saveTask() {
-    let changedTask = $(event.target);
-    let dataNum = changedTask.parent('div').attr('data-num');
+    let dataNum = $(this).parent('div').attr('data-num');
     let taskHr = 'taskHr' + dataNum;
-    let newTask = $('*[data-num="'+dataNum+'"] textarea').val();
-    console.log(newTask);
+    //console.log(dataNum);
+    let newTask = $('*[data-num="'+dataNum+'"] textarea').val().trim();
+    //console.log(newTask);
     tasks[taskHr] = newTask;
     localStorage.setItem('tasks',JSON.stringify(tasks));
     //console.log('task stored');
