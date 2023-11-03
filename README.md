@@ -8,7 +8,7 @@ Browser localStorage is used to persist tasks between visits and a 'clear schedu
 
 ## Usage
 
-View on GitHub Pages here: [https://webtam81.github.io/Work-Day-Scheduler/](https://webtam81.github.io/Coding-Quiz/). Fill in the task box then click on the save icon to save the task. 
+View on GitHub Pages here: [https://webtam81.github.io/Work-Day-Scheduler/](https://webtam81.github.io/Work-Day-Scheduler/). Fill in the task box then click on the save icon to save the task. 
 
 ![Screenshot of the Work Day Scheduler application](./work-day-scheduler-screenshot.png)
 
